@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Fyre\FormBuilder;
 
 use
-    BadMethodCallException;
+    Fyre\Error\Exceptions\Exception;
 
 use const
     ENT_HTML5,
@@ -83,7 +83,7 @@ class FormBuilder
      * @param string $type The input type.
      * @param array $arguments Arguments to pass to the input method.
      * @return string The input HTML.
-     * @throws BadMethodCallException if the input type is invalid.
+     * @throws Exception if the input type is invalid.
      */
     public static function __callStatic(string $type, array $arguments): string
     {
@@ -92,7 +92,7 @@ class FormBuilder
         }
 
         if (!in_array($type, static::$inputTypes)) {
-            throw new BadMethodCallException('Invalid input type');
+            throw new Exception('Invalid input type');
         }
 
         $name = array_shift($arguments);
