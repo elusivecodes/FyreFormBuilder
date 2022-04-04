@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use
-    Fyre\Error\Exceptions\Exception,
+    BadMethodCallException,
     Fyre\FormBuilder\FormBuilder;
 
 trait InputTypeTest
@@ -31,7 +31,7 @@ trait InputTypeTest
 
     public function testInputTypeInvalid(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(BadMethodCallException::class);
 
         FormBuilder::invalid();
     }
