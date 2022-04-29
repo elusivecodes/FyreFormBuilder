@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use
-    Fyre\FormBuilder\FormBuilder,
+    Fyre\HTMLHelper\HtmlHelper,
     PHPUnit\Framework\TestCase;
 
 final class FormBuilderTest extends TestCase
@@ -27,7 +27,7 @@ final class FormBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        FormBuilder::setCharset('UTF-8');
+        HtmlHelper::setCharset('UTF-8');
     }
 
 }

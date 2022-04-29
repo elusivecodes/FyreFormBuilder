@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faedfd5ea8c6be665131d2794ea537da",
-    "packages": [],
+    "content-hash": "97638e80800e94d1b207288f3eb76ae2",
+    "packages": [
+        {
+            "name": "fyre/htmlhelper",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elusivecodes/HTMLHelper.git",
+                "reference": "4aba42712aeca4162575a8dc225fb9fc189f8da9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elusivecodes/HTMLHelper/zipball/4aba42712aeca4162575a8dc225fb9fc189f8da9",
+                "reference": "4aba42712aeca4162575a8dc225fb9fc189f8da9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fyre\\HTMLHelper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "elusivecodes",
+                    "email": "elusivecodes@gmail.com"
+                }
+            ],
+            "description": "A HTML helper library.",
+            "support": {
+                "issues": "https://github.com/elusivecodes/HTMLHelper/issues",
+                "source": "https://github.com/elusivecodes/HTMLHelper/tree/v1.0"
+            },
+            "time": "2022-04-29T09:53:01+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

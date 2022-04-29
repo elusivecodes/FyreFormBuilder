@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Tests;
 
 use
-    Fyre\FormBuilder\FormBuilder;
+    Fyre\FormBuilder\FormBuilder,
+    Fyre\HTMLHelper\HtmlHelper;
 
 trait OpenMultipartTest
 {
@@ -27,7 +28,7 @@ trait OpenMultipartTest
 
     public function testOpenMultipartCharset(): void
     {
-        FormBuilder::setCharset('ISO-8859-1');
+        HtmlHelper::setCharset('ISO-8859-1');
 
         $this->assertSame(
             '<form method="post" enctype="multipart/form-data" charset="ISO-8859-1">',

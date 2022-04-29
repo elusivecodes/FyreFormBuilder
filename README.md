@@ -14,7 +14,7 @@
 **Using Composer**
 
 ```
-composer require fyre/form
+composer require fyre/formbuilder
 ```
 
 In PHP:

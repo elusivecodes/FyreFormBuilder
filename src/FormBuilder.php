@@ -4,29 +4,14 @@ declare(strict_types=1);
 namespace Fyre\FormBuilder;
 
 use
-    BadMethodCallException;
-
-use const
-    ENT_HTML5,
-    ENT_QUOTES,
-    ENT_SUBSTITUTE;
+    BadMethodCallException,
+    Fyre\HTMLHelper\HtmlHelper;
 
 use function
     array_key_exists,
-    array_search,
     array_shift,
-    count,
-    htmlspecialchars,
     in_array,
-    is_array,
-    is_bool,
-    is_numeric,
-    is_object,
-    json_encode,
-    preg_match,
-    preg_replace,
-    strtolower,
-    uksort;
+    is_array;
 
 /**
  * FormBuilder
@@ -57,26 +42,6 @@ class FormBuilder
         'url',
         'week'
     ];
-
-    protected static array $attributesOrder = [
-        'class',
-        'id',
-        'name',
-        'data-',
-        'src',
-        'for',
-        'type',
-        'href',
-        'action',
-        'method',
-        'value',
-        'title',
-        'alt',
-        'role',
-        'aria-'
-    ];
-
-    protected static string $charset = 'UTF-8';
 
     /**
      * Render an input type element.
@@ -116,10 +81,10 @@ class FormBuilder
         $options['type'] ??= 'button';
 
         if ($escape) {
-            $content = static::escape($content);
+            $content = HtmlHelper::escape($content);
         }
 
-        return '<button'.static::attributes($options).'>'.$content.'</button>';
+        return '<button'.HtmlHelper::attributes($options).'>'.$content.'</button>';
     }
 
     /**
@@ -147,16 +112,7 @@ class FormBuilder
      */
     public static function fieldsetOpen(array $options = []): string
     {
-        return '<fieldset'.static::attributes($options).'>';
-    }
-
-    /**
-     * Get the charset.
-     * @return string $charset The charset.
-     */
-    public static function getCharset(): string
-    {
-        return static::$charset;
+        return '<fieldset'.HtmlHelper::attributes($options).'>';
     }
 
     /**
@@ -173,7 +129,7 @@ class FormBuilder
 
         $options['type'] ??= 'text';
 
-        return '<input'.static::attributes($options).' />';
+        return '<input'.HtmlHelper::attributes($options).' />';
     }
 
     /**
@@ -188,10 +144,10 @@ class FormBuilder
         unset($options['escape']);
 
         if ($escape) {
-            $content = static::escape($content);
+            $content = HtmlHelper::escape($content);
         }
 
-        return '<label'.static::attributes($options).'>'.$content.'</label>';
+        return '<label'.HtmlHelper::attributes($options).'>'.$content.'</label>';
     }
 
     /**
@@ -206,10 +162,10 @@ class FormBuilder
         unset($options['escape']);
 
         if ($escape) {
-            $content = static::escape($content);
+            $content = HtmlHelper::escape($content);
         }
 
-        return '<legend'.static::attributes($options).'>'.$content.'</legend>';
+        return '<legend'.HtmlHelper::attributes($options).'>'.$content.'</legend>';
     }
 
     /**
@@ -225,9 +181,9 @@ class FormBuilder
         }
 
         $options['method'] ??= 'post';
-        $options['charset'] ??= static::$charset;
+        $options['charset'] ??= HtmlHelper::getCharset();
 
-        return '<form'.static::attributes($options).'>';
+        return '<form'.HtmlHelper::attributes($options).'>';
     }
 
     /**
@@ -265,7 +221,7 @@ class FormBuilder
             $selected = [$selected];
         }
 
-        $html = '<select'.static::attributes($options).'>';
+        $html = '<select'.HtmlHelper::attributes($options).'>';
         $html .= static::buildOptions($selectOptions, $selected);
         $html .= '</select>';
 
@@ -286,15 +242,6 @@ class FormBuilder
     }
 
     /**
-     * Set the charset.
-     * @param string $charset The charset.
-     */
-    public static function setCharset(string $charset): void
-    {
-        static::$charset = $charset;
-    }
-
-    /**
      * Render a textarea element.
      * @param string|null $name The textarea name.
      * @param array $options Options for rendering the textarea.
@@ -309,84 +256,7 @@ class FormBuilder
         $value = $options['value'] ?? '';
         unset($options['value']);
 
-        return '<textarea'.static::attributes($options).'>'.static::escape($value).'</textarea>';
-    }
-
-    /**
-     * Get the index for an attribute.
-     * @param string $attribute The attribute name.
-     * @return int The attribute index.
-     */
-    protected static function attributeIndex(string $attribute): int
-    {
-        if (preg_match('/^(data|aria)-/', $attribute)) {
-            $attribute = substr($attribute, 0, 5);
-        }
-
-        $index = array_search($attribute, static::$attributesOrder);
-
-        if ($index === false) {
-            return count(static::$attributesOrder);
-        }
-
-        return $index;
-    }
-
-    /**
-     * Generate an attribute string.
-     * @param array $options The attributes.
-     * @return string The attribute string.
-     */
-    protected static function attributes(array $options = []): string
-    {
-        $attributes = [];
-
-        foreach ($options AS $key => $value) {
-            if ($value === null) {
-                continue;
-            }
-
-            if (is_numeric($key)) {
-                $key = $value;
-                $value = null;
-            }
-
-            $key = preg_replace('/[^\w-]/', '', $key);
-            $key = strtolower($key);
-
-            if (!$key) {
-                continue;
-            }
-
-            if (is_bool($value)) {
-                $value = $value ? null : 'false';
-            } else if (is_array($value) || is_object($value)) {
-                $value = json_encode($value);
-                $value = static::escape($value);
-            } else if ($value !== null) {
-                $value = static::escape((string) $value);
-            }
-
-            $attributes[$key] = $value;
-        }
-
-        if ($attributes === []) {
-            return '';
-        }
-
-        uksort($attributes, fn(string $a, string $b): int => static::attributeIndex($a) - static::attributeIndex($b));
-
-        $html = '';
-
-        foreach ($attributes AS $key => $value) {
-            if ($value !== null) {
-                $html .= ' '.$key.'="'.$value.'"';
-            } else {
-                $html .= ' '.$key;
-            }
-        }
-
-        return $html;
+        return '<textarea'.HtmlHelper::attributes($options).'>'.HtmlHelper::escape($value).'</textarea>';
     }
 
     /**
@@ -410,7 +280,7 @@ class FormBuilder
                 $children = $option['children'];
                 unset($option['children']);
 
-                $html .= '<optgroup'.static::attributes($option).'>';
+                $html .= '<optgroup'.HtmlHelper::attributes($option).'>';
                 $html .= static::buildOptions($children, $selected);
                 $html .= '</optgroup>';
             } else {
@@ -422,21 +292,11 @@ class FormBuilder
                     $option[] = 'selected';
                 }
 
-                $html .= '<option'.static::attributes($option).'>'.static::escape($label).'</option>';
+                $html .= '<option'.HtmlHelper::attributes($option).'>'.HtmlHelper::escape($label).'</option>';
             }
         }
 
         return $html;
-    }
-
-    /**
-     * Escape characters in a string for use in HTML.
-     * @param string $string The input string.
-     * @return string The escaped string.
-     */
-    protected static function escape(string $string): string
-    {
-        return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, static::$charset);
     }
 
 }
