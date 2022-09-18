@@ -85,27 +85,27 @@ All `options` will be created as attributes on the input element.
 By default, the input will be created as a text type. You can use the following helper methods to generate other input type fields.
 
 ```php
-$input = FormBuilder::checkbox($input, $options);
-$input = FormBuilder::color($input, $options);
-$input = FormBuilder::date($input, $options);
-$input = FormBuilder::datetime($input, $options);
-$input = FormBuilder::email($input, $options);
-$input = FormBuilder::file($input, $options);
-$input = FormBuilder::hidden($input, $options);
-$input = FormBuilder::image($input, $options);
-$input = FormBuilder::month($input, $options);
-$input = FormBuilder::number($input, $options);
-$input = FormBuilder::password($input, $options);
-$input = FormBuilder::radio($input, $options);
-$input = FormBuilder::range($input, $options);
-$input = FormBuilder::reset($input, $options);
-$input = FormBuilder::search($input, $options);
-$input = FormBuilder::submit($input, $options);
-$input = FormBuilder::tel($input, $options);
-$input = FormBuilder::text($input, $options);
-$input = FormBuilder::time($input, $options);
-$input = FormBuilder::url($input, $options);
-$input = FormBuilder::week($input, $options);
+$input = FormBuilder::checkbox($name, $options);
+$input = FormBuilder::color($name, $options);
+$input = FormBuilder::date($name, $options);
+$input = FormBuilder::datetime($name, $options);
+$input = FormBuilder::email($name, $options);
+$input = FormBuilder::file($name, $options);
+$input = FormBuilder::hidden($name, $options);
+$input = FormBuilder::image($name, $options);
+$input = FormBuilder::month($name, $options);
+$input = FormBuilder::number($name, $options);
+$input = FormBuilder::password($name, $options);
+$input = FormBuilder::radio($name, $options);
+$input = FormBuilder::range($name, $options);
+$input = FormBuilder::reset($name, $options);
+$input = FormBuilder::search($name, $options);
+$input = FormBuilder::submit($name, $options);
+$input = FormBuilder::tel($name, $options);
+$input = FormBuilder::text($name, $options);
+$input = FormBuilder::time($name, $options);
+$input = FormBuilder::url($name, $options);
+$input = FormBuilder::week($name, $options);
 ```
 
 **Label**
@@ -159,7 +159,7 @@ Render a multipart form open tag.
 - `$options` is an array of options for rendering the form.
 
 ```php
-$open = FormBuilder::open($action, $options);
+$open = FormBuilder::openMultipart($action, $options);
 ```
 
 All `options` will be created as attributes on the form element.
