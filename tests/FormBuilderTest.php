@@ -23,7 +23,7 @@ final class FormBuilderTest extends TestCase
         OpenMultipartTest,
         SelectTest,
         SelectMultiTest,
-        TextAreaTest;
+        TextareaTest;
 
     protected function setUp(): void
     {
