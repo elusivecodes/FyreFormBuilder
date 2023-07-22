@@ -1,6 +1,6 @@
 # FyreFormBuilder
 
-**FyreFormBuilder** is a free, form builder library for *PHP*.
+**FyreFormBuilder** is a free, open-source form builder library for *PHP*.
 
 
 ## Table Of Contents
@@ -20,7 +20,7 @@ composer require fyre/formbuilder
 In PHP:
 
 ```php
-use Fyre\FormBuilder\FormBuilder;
+use Fyre\Form\FormBuilder;
 ```
 
 

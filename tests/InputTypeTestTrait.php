@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use
-    BadMethodCallException,
-    Fyre\FormBuilder\FormBuilder;
+use BadMethodCallException;
+use Fyre\Form\FormBuilder;
 
-trait InputTypeTest
+trait InputTypeTestTrait
 {
 
     public function testInputTypeName(): void

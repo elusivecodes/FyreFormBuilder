@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use
-    Fyre\FormBuilder\FormBuilder;
+use Fyre\Form\FormBuilder;
 
-trait FieldsetCloseTest
+trait FieldsetCloseTestTrait
 {
 
     public function testFieldsetClose(): void

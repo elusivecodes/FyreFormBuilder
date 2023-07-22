@@ -1,17 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Fyre\FormBuilder;
+namespace Fyre\Form;
 
-use
-    BadMethodCallException,
-    Fyre\HTMLHelper\HtmlHelper;
+use BadMethodCallException;
+use Fyre\Utility\HtmlHelper;
 
-use function
-    array_key_exists,
-    array_shift,
-    in_array,
-    is_array;
+use function array_key_exists;
+use function array_shift;
+use function in_array;
+use function is_array;
 
 /**
  * FormBuilder
