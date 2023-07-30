@@ -14,7 +14,7 @@ use function is_array;
 /**
  * FormBuilder
  */
-class FormBuilder
+abstract class FormBuilder
 {
 
     protected static array $inputTypes = [
