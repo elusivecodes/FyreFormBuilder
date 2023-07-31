@@ -46,7 +46,7 @@ abstract class FormBuilder
      * @param string $type The input type.
      * @param array $arguments Arguments to pass to the input method.
      * @return string The input HTML.
-     * @throws BadMethodCallException if the input type is invalid.
+     * @throws BadMethodCallException if the input type is not valid.
      */
     public static function __callStatic(string $type, array $arguments): string
     {
