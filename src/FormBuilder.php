@@ -17,7 +17,7 @@ use function is_array;
 abstract class FormBuilder
 {
 
-    protected static array $inputTypes = [
+    protected const INPUT_TYPES = [
         'checkbox',
         'color',
         'date',
@@ -54,7 +54,7 @@ abstract class FormBuilder
             $type = 'datetime-local';
         }
 
-        if (!in_array($type, static::$inputTypes)) {
+        if (!in_array($type, static::INPUT_TYPES)) {
             throw new BadMethodCallException('Invalid input type');
         }
 
