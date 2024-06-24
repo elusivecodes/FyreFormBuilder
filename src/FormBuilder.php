@@ -16,7 +16,6 @@ use function is_array;
  */
 abstract class FormBuilder
 {
-
     protected const INPUT_TYPES = [
         'checkbox',
         'color',
@@ -267,7 +266,7 @@ abstract class FormBuilder
     {
         $html = '';
 
-        foreach ($options AS $value => $option) {
+        foreach ($options as $value => $option) {
             if (!is_array($option)) {
                 $option = [
                     'label' => $option
@@ -296,5 +295,4 @@ abstract class FormBuilder
 
         return $html;
     }
-
 }

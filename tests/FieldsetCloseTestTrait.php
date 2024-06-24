@@ -7,7 +7,6 @@ use Fyre\Form\FormBuilder;
 
 trait FieldsetCloseTestTrait
 {
-
     public function testFieldsetClose(): void
     {
         $this->assertSame(
@@ -15,5 +14,4 @@ trait FieldsetCloseTestTrait
             FormBuilder::fieldsetClose()
         );
     }
-
 }

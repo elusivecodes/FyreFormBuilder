@@ -8,7 +8,6 @@ use Fyre\Utility\HtmlHelper;
 
 trait OpenMultipartTestTrait
 {
-
     public function testOpenMultipart(): void
     {
         $this->assertSame(
@@ -25,13 +24,33 @@ trait OpenMultipartTestTrait
         );
     }
 
-    public function testOpenMultipartCharset(): void
+    public function testOpenMultipartAttributeArray(): void
     {
-        HtmlHelper::setCharset('ISO-8859-1');
-
         $this->assertSame(
-            '<form method="post" enctype="multipart/form-data" charset="ISO-8859-1">',
-            FormBuilder::openMultipart()
+            '<form data-test="[1,2]" method="post" enctype="multipart/form-data" charset="UTF-8">',
+            FormBuilder::openMultipart(null, [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testOpenMultipartAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<form data-test="&lt;test&gt;" method="post" enctype="multipart/form-data" charset="UTF-8">',
+            FormBuilder::openMultipart(null, [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testOpenMultipartAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<form class="test" method="post" enctype="multipart/form-data" charset="UTF-8">',
+            FormBuilder::openMultipart(null, [
+                '*class*' => 'test'
+            ])
         );
     }
 
@@ -57,34 +76,13 @@ trait OpenMultipartTestTrait
         );
     }
 
-    public function testOpenMultipartAttributeInvalid(): void
+    public function testOpenMultipartCharset(): void
     {
+        HtmlHelper::setCharset('ISO-8859-1');
+
         $this->assertSame(
-            '<form class="test" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
-                '*class*' => 'test'
-            ])
+            '<form method="post" enctype="multipart/form-data" charset="ISO-8859-1">',
+            FormBuilder::openMultipart()
         );
     }
-
-    public function testOpenMultipartAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<form data-test="&lt;test&gt;" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testOpenMultipartAttributeArray(): void
-    {
-        $this->assertSame(
-            '<form data-test="[1,2]" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

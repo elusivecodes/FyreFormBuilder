@@ -7,12 +7,63 @@ use Fyre\Form\FormBuilder;
 
 trait LabelTestTrait
 {
-
     public function testLabel(): void
     {
         $this->assertSame(
             '<label></label>',
             FormBuilder::label()
+        );
+    }
+
+    public function testLabelAttributeArray(): void
+    {
+        $this->assertSame(
+            '<label data-test="[1,2]"></label>',
+            FormBuilder::label('', [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testLabelAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<label data-test="&lt;test&gt;"></label>',
+            FormBuilder::label('', [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testLabelAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<label class="test"></label>',
+            FormBuilder::label('', [
+                '*class*' => 'test'
+            ])
+        );
+    }
+
+    public function testLabelAttributes(): void
+    {
+        $this->assertSame(
+            '<label class="test" id="label"></label>',
+            FormBuilder::label('', [
+                'class' => 'test',
+                'id' => 'label'
+            ])
+        );
+    }
+
+    public function testLabelAttributesOrder(): void
+    {
+        $this->assertSame(
+            '<label class="test" id="label"></label>',
+            FormBuilder::label('', [
+                'id' => 'label',
+                'class' => 'test'
+            ])
         );
     }
 
@@ -41,57 +92,4 @@ trait LabelTestTrait
             ])
         );
     }
-
-    public function testLabelAttributes(): void
-    {
-        $this->assertSame(
-            '<label class="test" id="label"></label>',
-            FormBuilder::label('', [
-                'class' => 'test',
-                'id' => 'label'
-            ])
-        );
-    }
-
-    public function testLabelAttributesOrder(): void
-    {
-        $this->assertSame(
-            '<label class="test" id="label"></label>',
-            FormBuilder::label('', [
-                'id' => 'label',
-                'class' => 'test'
-            ])
-        );
-    }
-
-    public function testLabelAttributeInvalid(): void
-    {
-        $this->assertSame(
-            '<label class="test"></label>',
-            FormBuilder::label('', [
-                '*class*' => 'test'
-            ])
-        );
-    }
-
-    public function testLabelAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<label data-test="&lt;test&gt;"></label>',
-            FormBuilder::label('', [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testLabelAttributeArray(): void
-    {
-        $this->assertSame(
-            '<label data-test="[1,2]"></label>',
-            FormBuilder::label('', [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

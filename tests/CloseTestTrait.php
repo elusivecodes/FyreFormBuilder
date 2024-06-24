@@ -7,7 +7,6 @@ use Fyre\Form\FormBuilder;
 
 trait CloseTestTrait
 {
-
     public function testClose(): void
     {
         $this->assertSame(
@@ -15,5 +14,4 @@ trait CloseTestTrait
             FormBuilder::close()
         );
     }
-
 }

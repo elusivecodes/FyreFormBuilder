@@ -7,12 +7,63 @@ use Fyre\Form\FormBuilder;
 
 trait SelectTestTrait
 {
-
     public function testSelect(): void
     {
         $this->assertSame(
             '<select></select>',
             FormBuilder::select()
+        );
+    }
+
+    public function testSelectAttributeArray(): void
+    {
+        $this->assertSame(
+            '<select data-test="[1,2]"></select>',
+            FormBuilder::select(null, [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testSelectAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<select data-test="&lt;test&gt;"></select>',
+            FormBuilder::select(null, [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testSelectAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<select class="test"></select>',
+            FormBuilder::select(null, [
+                '*class*' => 'test'
+            ])
+        );
+    }
+
+    public function testSelectAttributes(): void
+    {
+        $this->assertSame(
+            '<select class="test" id="select"></select>',
+            FormBuilder::select(null, [
+                'class' => 'test',
+                'id' => 'select'
+            ])
+        );
+    }
+
+    public function testSelectAttributesOrder(): void
+    {
+        $this->assertSame(
+            '<select class="test" id="select"></select>',
+            FormBuilder::select(null, [
+                'id' => 'select',
+                'class' => 'test'
+            ])
         );
     }
 
@@ -24,6 +75,24 @@ trait SelectTestTrait
         );
     }
 
+    public function testSelectOptionGroup(): void
+    {
+        $this->assertSame(
+            '<select><optgroup label="test"><option value="0">A</option><option value="1">B</option></optgroup></select>',
+            FormBuilder::select(null, [
+                'options' => [
+                    [
+                        'label' => 'test',
+                        'children' => [
+                            'A',
+                            'B'
+                        ]
+                    ]
+                ]
+            ])
+        );
+    }
+
     public function testSelectOptions(): void
     {
         $this->assertSame(
@@ -32,18 +101,6 @@ trait SelectTestTrait
                 'options' => [
                     'A',
                     'B'
-                ]
-            ])
-        );
-    }
-
-    public function testSelectOptionsEscape(): void
-    {
-        $this->assertSame(
-            '<select><option value="0">&lt;test&gt;</option></select>',
-            FormBuilder::select(null, [
-                'options' => [
-                    '<test>'
                 ]
             ])
         );
@@ -76,22 +133,6 @@ trait SelectTestTrait
         );
     }
 
-    public function testSelectOptionsAttributesInvalid(): void
-    {
-        $this->assertSame(
-            '<select><option class="test" value="a">A</option></select>',
-            FormBuilder::select(null, [
-                'options' => [
-                    [
-                        'value' => 'a',
-                        'label' => 'A',
-                        '*class*' => 'test'
-                    ]
-                ]
-            ])
-        );
-    }
-
     public function testSelectOptionsAttributesEscape(): void
     {
         $this->assertSame(
@@ -108,19 +149,29 @@ trait SelectTestTrait
         );
     }
 
-    public function testSelectOptionGroup(): void
+    public function testSelectOptionsAttributesInvalid(): void
     {
         $this->assertSame(
-            '<select><optgroup label="test"><option value="0">A</option><option value="1">B</option></optgroup></select>',
+            '<select><option class="test" value="a">A</option></select>',
             FormBuilder::select(null, [
                 'options' => [
                     [
-                        'label' => 'test',
-                        'children' => [
-                            'A',
-                            'B'
-                        ]
+                        'value' => 'a',
+                        'label' => 'A',
+                        '*class*' => 'test'
                     ]
+                ]
+            ])
+        );
+    }
+
+    public function testSelectOptionsEscape(): void
+    {
+        $this->assertSame(
+            '<select><option value="0">&lt;test&gt;</option></select>',
+            FormBuilder::select(null, [
+                'options' => [
+                    '<test>'
                 ]
             ])
         );
@@ -139,57 +190,4 @@ trait SelectTestTrait
             ])
         );
     }
-
-    public function testSelectAttributes(): void
-    {
-        $this->assertSame(
-            '<select class="test" id="select"></select>',
-            FormBuilder::select(null, [
-                'class' => 'test',
-                'id' => 'select'
-            ])
-        );
-    }
-
-    public function testSelectAttributesOrder(): void
-    {
-        $this->assertSame(
-            '<select class="test" id="select"></select>',
-            FormBuilder::select(null, [
-                'id' => 'select',
-                'class' => 'test'
-            ])
-        );
-    }
-
-    public function testSelectAttributeInvalid(): void
-    {
-        $this->assertSame(
-            '<select class="test"></select>',
-            FormBuilder::select(null, [
-                '*class*' => 'test'
-            ])
-        );
-    }
-
-    public function testSelectAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<select data-test="&lt;test&gt;"></select>',
-            FormBuilder::select(null, [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testSelectAttributeArray(): void
-    {
-        $this->assertSame(
-            '<select data-test="[1,2]"></select>',
-            FormBuilder::select(null, [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 final class FormBuilderTest extends TestCase
 {
-
     use ButtonTestTrait;
     use CloseTestTrait;
     use FieldsetCloseTestTrait;
@@ -17,15 +16,14 @@ final class FormBuilderTest extends TestCase
     use InputTypeTestTrait;
     use LabelTestTrait;
     use LegendTestTrait;
-    use OpenTestTrait;
     use OpenMultipartTestTrait;
-    use SelectTestTrait;
+    use OpenTestTrait;
     use SelectMultiTestTrait;
+    use SelectTestTrait;
     use TextareaTestTrait;
 
     protected function setUp(): void
     {
         HtmlHelper::setCharset('UTF-8');
     }
-
 }

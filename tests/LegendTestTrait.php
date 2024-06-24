@@ -7,7 +7,6 @@ use Fyre\Form\FormBuilder;
 
 trait LegendTestTrait
 {
-
     public function testLegend(): void
     {
         $this->assertSame(
@@ -16,28 +15,32 @@ trait LegendTestTrait
         );
     }
 
-    public function testLegendContent(): void
+    public function testLegendAttributeArray(): void
     {
         $this->assertSame(
-            '<legend>Test</legend>',
-            FormBuilder::legend('Test')
+            '<legend data-test="[1,2]"></legend>',
+            FormBuilder::legend('', [
+                'data-test' => [1, 2]
+            ])
         );
     }
 
-    public function testLegendContentEscape(): void
+    public function testLegendAttributeEscape(): void
     {
         $this->assertSame(
-            '<legend>&lt;i&gt;Test&lt;/i&gt;</legend>',
-            FormBuilder::legend( '<i>Test</i>')
+            '<legend data-test="&lt;test&gt;"></legend>',
+            FormBuilder::legend('', [
+                'data-test' => '<test>'
+            ])
         );
     }
 
-    public function testLegendContentNoEscape(): void
+    public function testLegendAttributeInvalid(): void
     {
         $this->assertSame(
-            '<legend><i>Test</i></legend>',
-            FormBuilder::legend('<i>Test</i>', [
-                'escape' => false
+            '<legend class="test"></legend>',
+            FormBuilder::legend('', [
+                '*class*' => 'test'
             ])
         );
     }
@@ -64,34 +67,29 @@ trait LegendTestTrait
         );
     }
 
-    public function testLegendAttributeInvalid(): void
+    public function testLegendContent(): void
     {
         $this->assertSame(
-            '<legend class="test"></legend>',
-            FormBuilder::legend('', [
-                '*class*' => 'test'
-            ])
+            '<legend>Test</legend>',
+            FormBuilder::legend('Test')
         );
     }
 
-    public function testLegendAttributeEscape(): void
+    public function testLegendContentEscape(): void
     {
         $this->assertSame(
-            '<legend data-test="&lt;test&gt;"></legend>',
-            FormBuilder::legend('', [
-                'data-test' => '<test>'
-            ])
+            '<legend>&lt;i&gt;Test&lt;/i&gt;</legend>',
+            FormBuilder::legend('<i>Test</i>')
         );
     }
 
-    public function testLegendAttributeArray(): void
+    public function testLegendContentNoEscape(): void
     {
         $this->assertSame(
-            '<legend data-test="[1,2]"></legend>',
-            FormBuilder::legend('', [
-                'data-test' => [1, 2]
+            '<legend><i>Test</i></legend>',
+            FormBuilder::legend('<i>Test</i>', [
+                'escape' => false
             ])
         );
     }
-
 }

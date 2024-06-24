@@ -19,10 +19,17 @@
             "Tests\\": "tests/"
         }
     },
+    "require": {
+        "friendsofphp/php-cs-fixer": "^3.59",
+        "fyre/php-cs-fixer-config": "^1.0",
+        "fyre/htmlhelper": "^2.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "^10"
     },
-    "require": {
-        "fyre/htmlhelper": "^2.0"
+    "scripts": {
+        "cs": "php-cs-fixer fix --ansi --verbose --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix --ansi --verbose --diff",
+        "test": "phpunit tests"
     }
 }

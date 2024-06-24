@@ -7,12 +7,63 @@ use Fyre\Form\FormBuilder;
 
 trait ButtonTestTrait
 {
-
     public function testButton(): void
     {
         $this->assertSame(
             '<button type="button"></button>',
             FormBuilder::button()
+        );
+    }
+
+    public function testButtonAttributeArray(): void
+    {
+        $this->assertSame(
+            '<button data-test="[1,2]" type="button"></button>',
+            FormBuilder::button('', [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testButtonAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<button data-test="&lt;test&gt;" type="button"></button>',
+            FormBuilder::button('', [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testButtonAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<button class="test" type="button"></button>',
+            FormBuilder::button('', [
+                '*class*' => 'test'
+            ])
+        );
+    }
+
+    public function testButtonAttributes(): void
+    {
+        $this->assertSame(
+            '<button class="test" id="button" type="button"></button>',
+            FormBuilder::button('', [
+                'class' => 'test',
+                'id' => 'button'
+            ])
+        );
+    }
+
+    public function testButtonAttributesOrder(): void
+    {
+        $this->assertSame(
+            '<button class="test" id="button" type="button"></button>',
+            FormBuilder::button('', [
+                'id' => 'button',
+                'class' => 'test'
+            ])
         );
     }
 
@@ -41,57 +92,4 @@ trait ButtonTestTrait
             ])
         );
     }
-
-    public function testButtonAttributes(): void
-    {
-        $this->assertSame(
-            '<button class="test" id="button" type="button"></button>',
-            FormBuilder::button('', [
-                'class' => 'test',
-                'id' => 'button'
-            ])
-        );
-    }
-
-    public function testButtonAttributesOrder(): void
-    {
-        $this->assertSame(
-            '<button class="test" id="button" type="button"></button>',
-            FormBuilder::button('', [
-                'id' => 'button',
-                'class' => 'test'
-            ])
-        );
-    }
-
-    public function testButtonAttributeInvalid(): void
-    {
-        $this->assertSame(
-            '<button class="test" type="button"></button>',
-            FormBuilder::button('', [
-                '*class*' => 'test'
-            ])
-        );
-    }
-
-    public function testButtonAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<button data-test="&lt;test&gt;" type="button"></button>',
-            FormBuilder::button('', [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testButtonAttributeArray(): void
-    {
-        $this->assertSame(
-            '<button data-test="[1,2]" type="button"></button>',
-            FormBuilder::button('', [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

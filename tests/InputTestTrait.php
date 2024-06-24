@@ -7,7 +7,6 @@ use Fyre\Form\FormBuilder;
 
 trait InputTestTrait
 {
-
     public function testInput(): void
     {
         $this->assertSame(
@@ -16,11 +15,33 @@ trait InputTestTrait
         );
     }
 
-    public function testInputName(): void
+    public function testInputAttributeArray(): void
     {
         $this->assertSame(
-            '<input name="input" type="text" />',
-            FormBuilder::input('input')
+            '<input data-test="[1,2]" type="text" />',
+            FormBuilder::input(null, [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testInputAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<input data-test="&lt;test&gt;" type="text" />',
+            FormBuilder::input(null, [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testInputAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<input class="test" type="text" />',
+            FormBuilder::input(null, [
+                '*class*' => 'test'
+            ])
         );
     }
 
@@ -46,34 +67,11 @@ trait InputTestTrait
         );
     }
 
-    public function testInputAttributeInvalid(): void
+    public function testInputName(): void
     {
         $this->assertSame(
-            '<input class="test" type="text" />',
-            FormBuilder::input(null, [
-                '*class*' => 'test'
-            ])
+            '<input name="input" type="text" />',
+            FormBuilder::input('input')
         );
     }
-
-    public function testInputAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<input data-test="&lt;test&gt;" type="text" />',
-            FormBuilder::input(null, [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testInputAttributeArray(): void
-    {
-        $this->assertSame(
-            '<input data-test="[1,2]" type="text" />',
-            FormBuilder::input(null, [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

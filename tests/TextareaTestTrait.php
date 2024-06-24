@@ -7,12 +7,63 @@ use Fyre\Form\FormBuilder;
 
 trait TextareaTestTrait
 {
-
     public function testTextarea(): void
     {
         $this->assertSame(
             '<textarea></textarea>',
             FormBuilder::textarea()
+        );
+    }
+
+    public function testTextareaAttributeArray(): void
+    {
+        $this->assertSame(
+            '<textarea data-test="[1,2]"></textarea>',
+            FormBuilder::textarea(null, [
+                'data-test' => [1, 2]
+            ])
+        );
+    }
+
+    public function testTextareaAttributeEscape(): void
+    {
+        $this->assertSame(
+            '<textarea data-test="&lt;test&gt;"></textarea>',
+            FormBuilder::textarea(null, [
+                'data-test' => '<test>'
+            ])
+        );
+    }
+
+    public function testTextareaAttributeInvalid(): void
+    {
+        $this->assertSame(
+            '<textarea class="test"></textarea>',
+            FormBuilder::textarea(null, [
+                '*class*' => 'test'
+            ])
+        );
+    }
+
+    public function testTextareaAttributes(): void
+    {
+        $this->assertSame(
+            '<textarea class="test" id="textarea"></textarea>',
+            FormBuilder::textarea(null, [
+                'class' => 'test',
+                'id' => 'textarea'
+            ])
+        );
+    }
+
+    public function testTextareaAttributesOrder(): void
+    {
+        $this->assertSame(
+            '<textarea class="test" id="textarea"></textarea>',
+            FormBuilder::textarea(null, [
+                'id' => 'textarea',
+                'class' => 'test'
+            ])
         );
     }
 
@@ -43,57 +94,4 @@ trait TextareaTestTrait
             ])
         );
     }
-
-    public function testTextareaAttributes(): void
-    {
-        $this->assertSame(
-            '<textarea class="test" id="textarea"></textarea>',
-            FormBuilder::textarea(null, [
-                'class' => 'test',
-                'id' => 'textarea'
-            ])
-        );
-    }
-
-    public function testTextareaAttributesOrder(): void
-    {
-        $this->assertSame(
-            '<textarea class="test" id="textarea"></textarea>',
-            FormBuilder::textarea(null, [
-                'id' => 'textarea',
-                'class' => 'test'
-            ])
-        );
-    }
-
-    public function testTextareaAttributeInvalid(): void
-    {
-        $this->assertSame(
-            '<textarea class="test"></textarea>',
-            FormBuilder::textarea(null, [
-                '*class*' => 'test'
-            ])
-        );
-    }
-
-    public function testTextareaAttributeEscape(): void
-    {
-        $this->assertSame(
-            '<textarea data-test="&lt;test&gt;"></textarea>',
-            FormBuilder::textarea(null, [
-                'data-test' => '<test>'
-            ])
-        );
-    }
-
-    public function testTextareaAttributeArray(): void
-    {
-        $this->assertSame(
-            '<textarea data-test="[1,2]"></textarea>',
-            FormBuilder::textarea(null, [
-                'data-test' => [1, 2]
-            ])
-        );
-    }
-
 }

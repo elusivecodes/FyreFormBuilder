@@ -8,15 +8,6 @@ use Fyre\Form\FormBuilder;
 
 trait InputTypeTestTrait
 {
-
-    public function testInputTypeName(): void
-    {
-        $this->assertSame(
-            '<input name="number" type="number" />',
-            FormBuilder::number('number')
-        );
-    }
-
     public function testInputTypeAttributes(): void
     {
         $this->assertSame(
@@ -26,13 +17,6 @@ trait InputTypeTestTrait
                 'id' => 'number'
             ])
         );
-    }
-
-    public function testInputTypeInvalid(): void
-    {
-        $this->expectException(BadMethodCallException::class);
-
-        FormBuilder::invalid();
     }
 
     public function testInputTypeCheckbox(): void
@@ -99,11 +83,26 @@ trait InputTypeTestTrait
         );
     }
 
+    public function testInputTypeInvalid(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        FormBuilder::invalid();
+    }
+
     public function testInputTypeMonth(): void
     {
         $this->assertSame(
             '<input type="month" />',
             FormBuilder::month()
+        );
+    }
+
+    public function testInputTypeName(): void
+    {
+        $this->assertSame(
+            '<input name="number" type="number" />',
+            FormBuilder::number('number')
         );
     }
 
@@ -202,5 +201,4 @@ trait InputTypeTestTrait
             FormBuilder::week()
         );
     }
-
 }
