@@ -20,7 +20,7 @@ trait InputTestTrait
         $this->assertSame(
             '<input data-test="[1,2]" type="text" />',
             FormBuilder::input(null, [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait InputTestTrait
         $this->assertSame(
             '<input data-test="&lt;test&gt;" type="text" />',
             FormBuilder::input(null, [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait InputTestTrait
         $this->assertSame(
             '<input class="test" type="text" />',
             FormBuilder::input(null, [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait InputTestTrait
             '<input class="test" id="input" type="text" />',
             FormBuilder::input(null, [
                 'class' => 'test',
-                'id' => 'input'
+                'id' => 'input',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait InputTestTrait
             '<input class="test" id="input" type="text" />',
             FormBuilder::input(null, [
                 'id' => 'input',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }

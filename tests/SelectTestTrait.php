@@ -20,7 +20,7 @@ trait SelectTestTrait
         $this->assertSame(
             '<select data-test="[1,2]"></select>',
             FormBuilder::select(null, [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait SelectTestTrait
         $this->assertSame(
             '<select data-test="&lt;test&gt;"></select>',
             FormBuilder::select(null, [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait SelectTestTrait
         $this->assertSame(
             '<select class="test"></select>',
             FormBuilder::select(null, [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait SelectTestTrait
             '<select class="test" id="select"></select>',
             FormBuilder::select(null, [
                 'class' => 'test',
-                'id' => 'select'
+                'id' => 'select',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait SelectTestTrait
             '<select class="test" id="select"></select>',
             FormBuilder::select(null, [
                 'id' => 'select',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -85,10 +85,10 @@ trait SelectTestTrait
                         'label' => 'test',
                         'children' => [
                             'A',
-                            'B'
-                        ]
-                    ]
-                ]
+                            'B',
+                        ],
+                    ],
+                ],
             ])
         );
     }
@@ -100,8 +100,8 @@ trait SelectTestTrait
             FormBuilder::select(null, [
                 'options' => [
                     'A',
-                    'B'
-                ]
+                    'B',
+                ],
             ])
         );
     }
@@ -112,8 +112,8 @@ trait SelectTestTrait
             '<select><option value="a">A</option></select>',
             FormBuilder::select(null, [
                 'options' => [
-                    'a' => 'A'
-                ]
+                    'a' => 'A',
+                ],
             ])
         );
     }
@@ -126,9 +126,9 @@ trait SelectTestTrait
                 'options' => [
                     [
                         'value' => 'a',
-                        'label' => 'A'
-                    ]
-                ]
+                        'label' => 'A',
+                    ],
+                ],
             ])
         );
     }
@@ -142,9 +142,9 @@ trait SelectTestTrait
                     [
                         'value' => 'a',
                         'label' => 'A',
-                        'data-test' => '<test>'
-                    ]
-                ]
+                        'data-test' => '<test>',
+                    ],
+                ],
             ])
         );
     }
@@ -158,9 +158,9 @@ trait SelectTestTrait
                     [
                         'value' => 'a',
                         'label' => 'A',
-                        '*class*' => 'test'
-                    ]
-                ]
+                        '*class*' => 'test',
+                    ],
+                ],
             ])
         );
     }
@@ -171,8 +171,8 @@ trait SelectTestTrait
             '<select><option value="0">&lt;test&gt;</option></select>',
             FormBuilder::select(null, [
                 'options' => [
-                    '<test>'
-                ]
+                    '<test>',
+                ],
             ])
         );
     }
@@ -184,9 +184,9 @@ trait SelectTestTrait
             FormBuilder::select(null, [
                 'options' => [
                     'A',
-                    'B'
+                    'B',
                 ],
-                'value' => 1
+                'value' => 1,
             ])
         );
     }

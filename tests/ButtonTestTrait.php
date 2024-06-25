@@ -20,7 +20,7 @@ trait ButtonTestTrait
         $this->assertSame(
             '<button data-test="[1,2]" type="button"></button>',
             FormBuilder::button('', [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait ButtonTestTrait
         $this->assertSame(
             '<button data-test="&lt;test&gt;" type="button"></button>',
             FormBuilder::button('', [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait ButtonTestTrait
         $this->assertSame(
             '<button class="test" type="button"></button>',
             FormBuilder::button('', [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait ButtonTestTrait
             '<button class="test" id="button" type="button"></button>',
             FormBuilder::button('', [
                 'class' => 'test',
-                'id' => 'button'
+                'id' => 'button',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait ButtonTestTrait
             '<button class="test" id="button" type="button"></button>',
             FormBuilder::button('', [
                 'id' => 'button',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -88,7 +88,7 @@ trait ButtonTestTrait
         $this->assertSame(
             '<button type="button"><i>Test</i></button>',
             FormBuilder::button('<i>Test</i>', [
-                'escape' => false
+                'escape' => false,
             ])
         );
     }

@@ -29,7 +29,7 @@ trait OpenMultipartTestTrait
         $this->assertSame(
             '<form data-test="[1,2]" method="post" enctype="multipart/form-data" charset="UTF-8">',
             FormBuilder::openMultipart(null, [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -39,7 +39,7 @@ trait OpenMultipartTestTrait
         $this->assertSame(
             '<form data-test="&lt;test&gt;" method="post" enctype="multipart/form-data" charset="UTF-8">',
             FormBuilder::openMultipart(null, [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -49,7 +49,7 @@ trait OpenMultipartTestTrait
         $this->assertSame(
             '<form class="test" method="post" enctype="multipart/form-data" charset="UTF-8">',
             FormBuilder::openMultipart(null, [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -60,7 +60,7 @@ trait OpenMultipartTestTrait
             '<form class="test" id="form" method="post" enctype="multipart/form-data" charset="UTF-8">',
             FormBuilder::openMultipart(null, [
                 'class' => 'test',
-                'id' => 'form'
+                'id' => 'form',
             ])
         );
     }
@@ -71,7 +71,7 @@ trait OpenMultipartTestTrait
             '<form class="test" id="form" method="post" enctype="multipart/form-data" charset="UTF-8">',
             FormBuilder::openMultipart(null, [
                 'id' => 'form',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }

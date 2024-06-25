@@ -14,7 +14,7 @@ trait InputTypeTestTrait
             '<input class="test" id="number" name="number" type="number" />',
             FormBuilder::number('number', [
                 'class' => 'test',
-                'id' => 'number'
+                'id' => 'number',
             ])
         );
     }

@@ -20,7 +20,7 @@ trait LabelTestTrait
         $this->assertSame(
             '<label data-test="[1,2]"></label>',
             FormBuilder::label('', [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait LabelTestTrait
         $this->assertSame(
             '<label data-test="&lt;test&gt;"></label>',
             FormBuilder::label('', [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait LabelTestTrait
         $this->assertSame(
             '<label class="test"></label>',
             FormBuilder::label('', [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait LabelTestTrait
             '<label class="test" id="label"></label>',
             FormBuilder::label('', [
                 'class' => 'test',
-                'id' => 'label'
+                'id' => 'label',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait LabelTestTrait
             '<label class="test" id="label"></label>',
             FormBuilder::label('', [
                 'id' => 'label',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -88,7 +88,7 @@ trait LabelTestTrait
         $this->assertSame(
             '<label><i>Test</i></label>',
             FormBuilder::label('<i>Test</i>', [
-                'escape' => false
+                'escape' => false,
             ])
         );
     }

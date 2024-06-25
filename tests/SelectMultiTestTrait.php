@@ -20,7 +20,7 @@ trait SelectMultiTestTrait
         $this->assertSame(
             '<select data-test="[1,2]" multiple></select>',
             FormBuilder::selectMulti(null, [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait SelectMultiTestTrait
         $this->assertSame(
             '<select data-test="&lt;test&gt;" multiple></select>',
             FormBuilder::selectMulti(null, [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait SelectMultiTestTrait
         $this->assertSame(
             '<select class="test" multiple></select>',
             FormBuilder::selectMulti(null, [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait SelectMultiTestTrait
             '<select class="test" id="select" multiple></select>',
             FormBuilder::selectMulti(null, [
                 'class' => 'test',
-                'id' => 'select'
+                'id' => 'select',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait SelectMultiTestTrait
             '<select class="test" id="select" multiple></select>',
             FormBuilder::selectMulti(null, [
                 'id' => 'select',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -85,10 +85,10 @@ trait SelectMultiTestTrait
                         'label' => 'test',
                         'children' => [
                             'A',
-                            'B'
-                        ]
-                    ]
-                ]
+                            'B',
+                        ],
+                    ],
+                ],
             ])
         );
     }
@@ -100,8 +100,8 @@ trait SelectMultiTestTrait
             FormBuilder::selectMulti(null, [
                 'options' => [
                     'A',
-                    'B'
-                ]
+                    'B',
+                ],
             ])
         );
     }
@@ -112,8 +112,8 @@ trait SelectMultiTestTrait
             '<select multiple><option value="a">A</option></select>',
             FormBuilder::selectMulti(null, [
                 'options' => [
-                    'a' => 'A'
-                ]
+                    'a' => 'A',
+                ],
             ])
         );
     }
@@ -126,9 +126,9 @@ trait SelectMultiTestTrait
                 'options' => [
                     [
                         'value' => 'a',
-                        'label' => 'A'
-                    ]
-                ]
+                        'label' => 'A',
+                    ],
+                ],
             ])
         );
     }
@@ -142,9 +142,9 @@ trait SelectMultiTestTrait
                     [
                         'value' => 'a',
                         'label' => 'A',
-                        'data-test' => '<test>'
-                    ]
-                ]
+                        'data-test' => '<test>',
+                    ],
+                ],
             ])
         );
     }
@@ -158,9 +158,9 @@ trait SelectMultiTestTrait
                     [
                         'value' => 'a',
                         'label' => 'A',
-                        '*class*' => 'test'
-                    ]
-                ]
+                        '*class*' => 'test',
+                    ],
+                ],
             ])
         );
     }
@@ -171,8 +171,8 @@ trait SelectMultiTestTrait
             '<select multiple><option value="0">&lt;test&gt;</option></select>',
             FormBuilder::selectMulti(null, [
                 'options' => [
-                    '<test>'
-                ]
+                    '<test>',
+                ],
             ])
         );
     }
@@ -184,9 +184,9 @@ trait SelectMultiTestTrait
             FormBuilder::selectMulti(null, [
                 'options' => [
                     'A',
-                    'B'
+                    'B',
                 ],
-                'value' => 1
+                'value' => 1,
             ])
         );
     }
@@ -199,9 +199,9 @@ trait SelectMultiTestTrait
                 'options' => [
                     'A',
                     'B',
-                    'C'
+                    'C',
                 ],
-                'value' => [1, 2]
+                'value' => [1, 2],
             ])
         );
     }

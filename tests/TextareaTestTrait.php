@@ -20,7 +20,7 @@ trait TextareaTestTrait
         $this->assertSame(
             '<textarea data-test="[1,2]"></textarea>',
             FormBuilder::textarea(null, [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait TextareaTestTrait
         $this->assertSame(
             '<textarea data-test="&lt;test&gt;"></textarea>',
             FormBuilder::textarea(null, [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait TextareaTestTrait
         $this->assertSame(
             '<textarea class="test"></textarea>',
             FormBuilder::textarea(null, [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait TextareaTestTrait
             '<textarea class="test" id="textarea"></textarea>',
             FormBuilder::textarea(null, [
                 'class' => 'test',
-                'id' => 'textarea'
+                'id' => 'textarea',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait TextareaTestTrait
             '<textarea class="test" id="textarea"></textarea>',
             FormBuilder::textarea(null, [
                 'id' => 'textarea',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -80,7 +80,7 @@ trait TextareaTestTrait
         $this->assertSame(
             '<textarea>Test</textarea>',
             FormBuilder::textarea(null, [
-                'value' => 'Test'
+                'value' => 'Test',
             ])
         );
     }
@@ -90,7 +90,7 @@ trait TextareaTestTrait
         $this->assertSame(
             '<textarea>&lt;test&gt;</textarea>',
             FormBuilder::textarea(null, [
-                'value' => '<test>'
+                'value' => '<test>',
             ])
         );
     }

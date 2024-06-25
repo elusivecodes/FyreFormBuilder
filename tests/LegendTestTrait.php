@@ -20,7 +20,7 @@ trait LegendTestTrait
         $this->assertSame(
             '<legend data-test="[1,2]"></legend>',
             FormBuilder::legend('', [
-                'data-test' => [1, 2]
+                'data-test' => [1, 2],
             ])
         );
     }
@@ -30,7 +30,7 @@ trait LegendTestTrait
         $this->assertSame(
             '<legend data-test="&lt;test&gt;"></legend>',
             FormBuilder::legend('', [
-                'data-test' => '<test>'
+                'data-test' => '<test>',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait LegendTestTrait
         $this->assertSame(
             '<legend class="test"></legend>',
             FormBuilder::legend('', [
-                '*class*' => 'test'
+                '*class*' => 'test',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait LegendTestTrait
             '<legend class="test" id="legend"></legend>',
             FormBuilder::legend('', [
                 'class' => 'test',
-                'id' => 'legend'
+                'id' => 'legend',
             ])
         );
     }
@@ -62,7 +62,7 @@ trait LegendTestTrait
             '<legend class="test" id="legend"></legend>',
             FormBuilder::legend('', [
                 'id' => 'legend',
-                'class' => 'test'
+                'class' => 'test',
             ])
         );
     }
@@ -88,7 +88,7 @@ trait LegendTestTrait
         $this->assertSame(
             '<legend><i>Test</i></legend>',
             FormBuilder::legend('<i>Test</i>', [
-                'escape' => false
+                'escape' => false,
             ])
         );
     }
