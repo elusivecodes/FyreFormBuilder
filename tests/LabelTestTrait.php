@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait LabelTestTrait
 {
     public function testLabel(): void
     {
         $this->assertSame(
             '<label></label>',
-            FormBuilder::label()
+            $this->form->label()
         );
     }
 
@@ -19,7 +17,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label data-test="[1,2]"></label>',
-            FormBuilder::label('', [
+            $this->form->label('', [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label data-test="&lt;test&gt;"></label>',
-            FormBuilder::label('', [
+            $this->form->label('', [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label class="test"></label>',
-            FormBuilder::label('', [
+            $this->form->label('', [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label class="test" id="label"></label>',
-            FormBuilder::label('', [
+            $this->form->label('', [
                 'class' => 'test',
                 'id' => 'label',
             ])
@@ -60,7 +58,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label class="test" id="label"></label>',
-            FormBuilder::label('', [
+            $this->form->label('', [
                 'id' => 'label',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label>Test</label>',
-            FormBuilder::label('Test')
+            $this->form->label('Test')
         );
     }
 
@@ -79,7 +77,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label>&lt;i&gt;Test&lt;/i&gt;</label>',
-            FormBuilder::label('<i>Test</i>')
+            $this->form->label('<i>Test</i>')
         );
     }
 
@@ -87,7 +85,7 @@ trait LabelTestTrait
     {
         $this->assertSame(
             '<label><i>Test</i></label>',
-            FormBuilder::label('<i>Test</i>', [
+            $this->form->label('<i>Test</i>', [
                 'escape' => false,
             ])
         );

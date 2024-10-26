@@ -5,7 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [Methods](#methods)
+- [FormBuilder Create](#formbuilder-creation)
+- [FormBuilder Methods](#formbuilder-methods)
 
 
 
@@ -24,7 +25,16 @@ use Fyre\Form\FormBuilder;
 ```
 
 
-## Methods
+## FormBuilder Creation
+
+- `$html` is a [*HtmlHelper*](https://github.com/elusivecodes/FyreHTMLHelper).
+
+```php
+$form = new FormBuilder($html);
+```
+
+
+## FormBuilder Methods
 
 **Button**
 
@@ -34,7 +44,7 @@ Render a button element.
 - `$options` is an array of options for rendering the button.
 
 ```php
-$button = FormBuilder::button($content, $options);
+$button = $form->button($content, $options);
 ```
 
 By default, the button content will be HTML escaped. To disable this, set the `escape` value to *false* in the `options` array.
@@ -46,7 +56,7 @@ All other `options` will be created as attributes on the button element.
 Render a form close tag.
 
 ```php
-$close = FormBuilder::close();
+$close = $form->close();
 ```
 
 **Fieldset Close**
@@ -54,7 +64,7 @@ $close = FormBuilder::close();
 Render a fieldset close tag.
 
 ```php
-$fieldsetClose = FormBuilder::fieldsetClose();
+$fieldsetClose = $form->fieldsetClose();
 ```
 
 **Fieldset Open**
@@ -64,7 +74,7 @@ Render a fieldset open tag.
 - `$options` is an array of options for rendering the fieldset.
 
 ```php
-$fieldset = FormBuilder::fieldsetOpen($options);
+$fieldset = $form->fieldsetOpen($options);
 ```
 
 All `options` will be created as attributes on the fieldset element.
@@ -77,7 +87,7 @@ Render an input element.
 - `$options` is an array of options for rendering the input.
 
 ```php
-$input = FormBuilder::input($name, $options);
+$input = $form->input($name, $options);
 ```
 
 All `options` will be created as attributes on the input element.
@@ -85,27 +95,27 @@ All `options` will be created as attributes on the input element.
 By default, the input will be created as a text type. You can use the following helper methods to generate other input type fields.
 
 ```php
-$input = FormBuilder::checkbox($name, $options);
-$input = FormBuilder::color($name, $options);
-$input = FormBuilder::date($name, $options);
-$input = FormBuilder::datetime($name, $options);
-$input = FormBuilder::email($name, $options);
-$input = FormBuilder::file($name, $options);
-$input = FormBuilder::hidden($name, $options);
-$input = FormBuilder::image($name, $options);
-$input = FormBuilder::month($name, $options);
-$input = FormBuilder::number($name, $options);
-$input = FormBuilder::password($name, $options);
-$input = FormBuilder::radio($name, $options);
-$input = FormBuilder::range($name, $options);
-$input = FormBuilder::reset($name, $options);
-$input = FormBuilder::search($name, $options);
-$input = FormBuilder::submit($name, $options);
-$input = FormBuilder::tel($name, $options);
-$input = FormBuilder::text($name, $options);
-$input = FormBuilder::time($name, $options);
-$input = FormBuilder::url($name, $options);
-$input = FormBuilder::week($name, $options);
+$input = $form->checkbox($name, $options);
+$input = $form->color($name, $options);
+$input = $form->date($name, $options);
+$input = $form->datetime($name, $options);
+$input = $form->email($name, $options);
+$input = $form->file($name, $options);
+$input = $form->hidden($name, $options);
+$input = $form->image($name, $options);
+$input = $form->month($name, $options);
+$input = $form->number($name, $options);
+$input = $form->password($name, $options);
+$input = $form->radio($name, $options);
+$input = $form->range($name, $options);
+$input = $form->reset($name, $options);
+$input = $form->search($name, $options);
+$input = $form->submit($name, $options);
+$input = $form->tel($name, $options);
+$input = $form->text($name, $options);
+$input = $form->time($name, $options);
+$input = $form->url($name, $options);
+$input = $form->week($name, $options);
 ```
 
 **Label**
@@ -116,7 +126,7 @@ Render a label element.
 - `$options` is an array of options for rendering the label.
 
 ```php
-$label = FormBuilder::label($content, $options);
+$label = $form->label($content, $options);
 ```
 
 By default, the label content will be HTML escaped. To disable this, set the `escape` value to *false* in the `options` array.
@@ -131,7 +141,7 @@ Render a legend element.
 - `$options` is an array of options for rendering the legend.
 
 ```php
-$legend = FormBuilder::legend($content, $options);
+$legend = $form->legend($content, $options);
 ```
 
 By default, the legend content will be HTML escaped. To disable this, set the `escape` value to *false* in the `options` array.
@@ -146,7 +156,7 @@ Render a form open tag.
 - `$options` is an array of options for rendering the form.
 
 ```php
-$open = FormBuilder::open($action, $options);
+$open = $form->open($action, $options);
 ```
 
 All `options` will be created as attributes on the form element.
@@ -159,7 +169,7 @@ Render a multipart form open tag.
 - `$options` is an array of options for rendering the form.
 
 ```php
-$open = FormBuilder::openMultipart($action, $options);
+$open = $form->openMultipart($action, $options);
 ```
 
 All `options` will be created as attributes on the form element.
@@ -172,7 +182,7 @@ Render a select element.
 - `$options` is an array of options for rendering the select.
 
 ```php
-$select = FormBuilder::select($name, $options);
+$select = $form->select($name, $options);
 ```
 
 Option elements can be created by specifying an `options` value in the `options` array. Selected options can be specified using the `selected` value in the `options` array.
@@ -187,7 +197,7 @@ Render a multiple select element.
 - `$options` is an array of options for rendering the select.
 
 ```php
-$select = FormBuilder::selectMulti($name, $options);
+$select = $form->selectMulti($name, $options);
 ```
 
 Option elements can be created by specifying an `options` value in the `options` array. Selected options can be specified using the `selected` value in the `options` array.
@@ -202,7 +212,7 @@ Render a textarea element.
 - `$options` is an array of options for rendering the textarea.
 
 ```php
-$textarea = FormBuilder::textarea($name, $options);
+$textarea = $form->textarea($name, $options);
 ```
 
 All `options` will be created as attributes on the textarea element.

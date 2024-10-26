@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait SelectTestTrait
 {
     public function testSelect(): void
     {
         $this->assertSame(
             '<select></select>',
-            FormBuilder::select()
+            $this->form->select()
         );
     }
 
@@ -19,7 +17,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select data-test="[1,2]"></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select data-test="&lt;test&gt;"></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select class="test"></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select class="test" id="select"></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'class' => 'test',
                 'id' => 'select',
             ])
@@ -60,7 +58,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select class="test" id="select"></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'id' => 'select',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select name="select"></select>',
-            FormBuilder::select('select')
+            $this->form->select('select')
         );
     }
 
@@ -79,7 +77,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><optgroup label="test"><option value="0">A</option><option value="1">B</option></optgroup></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     [
                         'label' => 'test',
@@ -97,7 +95,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option value="0">A</option><option value="1">B</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     'A',
                     'B',
@@ -110,7 +108,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option value="a">A</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     'a' => 'A',
                 ],
@@ -122,7 +120,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option value="a">A</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -137,7 +135,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option data-test="&lt;test&gt;" value="a">A</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -153,7 +151,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option class="test" value="a">A</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -169,7 +167,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option value="0">&lt;test&gt;</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     '<test>',
                 ],
@@ -181,7 +179,7 @@ trait SelectTestTrait
     {
         $this->assertSame(
             '<select><option value="0">A</option><option value="1" selected>B</option></select>',
-            FormBuilder::select(null, [
+            $this->form->select(null, [
                 'options' => [
                     'A',
                     'B',

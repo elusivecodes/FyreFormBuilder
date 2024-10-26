@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait ButtonTestTrait
 {
     public function testButton(): void
     {
         $this->assertSame(
             '<button type="button"></button>',
-            FormBuilder::button()
+            $this->form->button()
         );
     }
 
@@ -19,7 +17,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button data-test="[1,2]" type="button"></button>',
-            FormBuilder::button('', [
+            $this->form->button('', [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button data-test="&lt;test&gt;" type="button"></button>',
-            FormBuilder::button('', [
+            $this->form->button('', [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button class="test" type="button"></button>',
-            FormBuilder::button('', [
+            $this->form->button('', [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button class="test" id="button" type="button"></button>',
-            FormBuilder::button('', [
+            $this->form->button('', [
                 'class' => 'test',
                 'id' => 'button',
             ])
@@ -60,7 +58,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button class="test" id="button" type="button"></button>',
-            FormBuilder::button('', [
+            $this->form->button('', [
                 'id' => 'button',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button type="button">Test</button>',
-            FormBuilder::button('Test')
+            $this->form->button('Test')
         );
     }
 
@@ -79,7 +77,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button type="button">&lt;i&gt;Test&lt;/i&gt;</button>',
-            FormBuilder::button('<i>Test</i>')
+            $this->form->button('<i>Test</i>')
         );
     }
 
@@ -87,7 +85,7 @@ trait ButtonTestTrait
     {
         $this->assertSame(
             '<button type="button"><i>Test</i></button>',
-            FormBuilder::button('<i>Test</i>', [
+            $this->form->button('<i>Test</i>', [
                 'escape' => false,
             ])
         );

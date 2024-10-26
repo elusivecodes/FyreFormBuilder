@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use BadMethodCallException;
-use Fyre\Form\FormBuilder;
 
 trait InputTypeTestTrait
 {
@@ -12,7 +11,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input class="test" id="number" name="number" type="number" />',
-            FormBuilder::number('number', [
+            $this->form->number('number', [
                 'class' => 'test',
                 'id' => 'number',
             ])
@@ -23,7 +22,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="checkbox" />',
-            FormBuilder::checkbox()
+            $this->form->checkbox()
         );
     }
 
@@ -31,7 +30,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="color" />',
-            FormBuilder::color()
+            $this->form->color()
         );
     }
 
@@ -39,7 +38,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="date" />',
-            FormBuilder::date()
+            $this->form->date()
         );
     }
 
@@ -47,7 +46,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="datetime-local" />',
-            FormBuilder::datetime()
+            $this->form->datetime()
         );
     }
 
@@ -55,7 +54,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="email" />',
-            FormBuilder::email()
+            $this->form->email()
         );
     }
 
@@ -63,7 +62,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="file" />',
-            FormBuilder::file()
+            $this->form->file()
         );
     }
 
@@ -71,7 +70,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="hidden" />',
-            FormBuilder::hidden()
+            $this->form->hidden()
         );
     }
 
@@ -79,7 +78,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="image" />',
-            FormBuilder::image()
+            $this->form->image()
         );
     }
 
@@ -87,14 +86,14 @@ trait InputTypeTestTrait
     {
         $this->expectException(BadMethodCallException::class);
 
-        FormBuilder::invalid();
+        $this->form->invalid();
     }
 
     public function testInputTypeMonth(): void
     {
         $this->assertSame(
             '<input type="month" />',
-            FormBuilder::month()
+            $this->form->month()
         );
     }
 
@@ -102,7 +101,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input name="number" type="number" />',
-            FormBuilder::number('number')
+            $this->form->number('number')
         );
     }
 
@@ -110,7 +109,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="number" />',
-            FormBuilder::number()
+            $this->form->number()
         );
     }
 
@@ -118,7 +117,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="password" />',
-            FormBuilder::password()
+            $this->form->password()
         );
     }
 
@@ -126,7 +125,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="radio" />',
-            FormBuilder::radio()
+            $this->form->radio()
         );
     }
 
@@ -134,7 +133,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="range" />',
-            FormBuilder::range()
+            $this->form->range()
         );
     }
 
@@ -142,7 +141,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="reset" />',
-            FormBuilder::reset()
+            $this->form->reset()
         );
     }
 
@@ -150,7 +149,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="search" />',
-            FormBuilder::search()
+            $this->form->search()
         );
     }
 
@@ -158,7 +157,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="submit" />',
-            FormBuilder::submit()
+            $this->form->submit()
         );
     }
 
@@ -166,7 +165,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="tel" />',
-            FormBuilder::tel()
+            $this->form->tel()
         );
     }
 
@@ -174,7 +173,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="text" />',
-            FormBuilder::text()
+            $this->form->text()
         );
     }
 
@@ -182,7 +181,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="time" />',
-            FormBuilder::time()
+            $this->form->time()
         );
     }
 
@@ -190,7 +189,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="url" />',
-            FormBuilder::url()
+            $this->form->url()
         );
     }
 
@@ -198,7 +197,7 @@ trait InputTypeTestTrait
     {
         $this->assertSame(
             '<input type="week" />',
-            FormBuilder::week()
+            $this->form->week()
         );
     }
 }

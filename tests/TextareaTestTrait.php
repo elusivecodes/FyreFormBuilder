@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait TextareaTestTrait
 {
     public function testTextarea(): void
     {
         $this->assertSame(
             '<textarea></textarea>',
-            FormBuilder::textarea()
+            $this->form->textarea()
         );
     }
 
@@ -19,7 +17,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea data-test="[1,2]"></textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea data-test="&lt;test&gt;"></textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea class="test"></textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea class="test" id="textarea"></textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'class' => 'test',
                 'id' => 'textarea',
             ])
@@ -60,7 +58,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea class="test" id="textarea"></textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'id' => 'textarea',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea name="textarea"></textarea>',
-            FormBuilder::textarea('textarea')
+            $this->form->textarea('textarea')
         );
     }
 
@@ -79,7 +77,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea>Test</textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'value' => 'Test',
             ])
         );
@@ -89,7 +87,7 @@ trait TextareaTestTrait
     {
         $this->assertSame(
             '<textarea>&lt;test&gt;</textarea>',
-            FormBuilder::textarea(null, [
+            $this->form->textarea(null, [
                 'value' => '<test>',
             ])
         );

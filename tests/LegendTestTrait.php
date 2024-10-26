@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait LegendTestTrait
 {
     public function testLegend(): void
     {
         $this->assertSame(
             '<legend></legend>',
-            FormBuilder::legend()
+            $this->form->legend()
         );
     }
 
@@ -19,7 +17,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend data-test="[1,2]"></legend>',
-            FormBuilder::legend('', [
+            $this->form->legend('', [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend data-test="&lt;test&gt;"></legend>',
-            FormBuilder::legend('', [
+            $this->form->legend('', [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend class="test"></legend>',
-            FormBuilder::legend('', [
+            $this->form->legend('', [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend class="test" id="legend"></legend>',
-            FormBuilder::legend('', [
+            $this->form->legend('', [
                 'class' => 'test',
                 'id' => 'legend',
             ])
@@ -60,7 +58,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend class="test" id="legend"></legend>',
-            FormBuilder::legend('', [
+            $this->form->legend('', [
                 'id' => 'legend',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend>Test</legend>',
-            FormBuilder::legend('Test')
+            $this->form->legend('Test')
         );
     }
 
@@ -79,7 +77,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend>&lt;i&gt;Test&lt;/i&gt;</legend>',
-            FormBuilder::legend('<i>Test</i>')
+            $this->form->legend('<i>Test</i>')
         );
     }
 
@@ -87,7 +85,7 @@ trait LegendTestTrait
     {
         $this->assertSame(
             '<legend><i>Test</i></legend>',
-            FormBuilder::legend('<i>Test</i>', [
+            $this->form->legend('<i>Test</i>', [
                 'escape' => false,
             ])
         );

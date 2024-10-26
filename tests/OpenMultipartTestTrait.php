@@ -3,16 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-use Fyre\Utility\HtmlHelper;
-
 trait OpenMultipartTestTrait
 {
     public function testOpenMultipart(): void
     {
         $this->assertSame(
             '<form method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart()
+            $this->form->openMultipart()
         );
     }
 
@@ -20,7 +17,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form action="/test" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart('/test')
+            $this->form->openMultipart('/test')
         );
     }
 
@@ -28,7 +25,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form data-test="[1,2]" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
+            $this->form->openMultipart(null, [
                 'data-test' => [1, 2],
             ])
         );
@@ -38,7 +35,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form data-test="&lt;test&gt;" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
+            $this->form->openMultipart(null, [
                 'data-test' => '<test>',
             ])
         );
@@ -48,7 +45,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form class="test" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
+            $this->form->openMultipart(null, [
                 '*class*' => 'test',
             ])
         );
@@ -58,7 +55,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form class="test" id="form" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
+            $this->form->openMultipart(null, [
                 'class' => 'test',
                 'id' => 'form',
             ])
@@ -69,7 +66,7 @@ trait OpenMultipartTestTrait
     {
         $this->assertSame(
             '<form class="test" id="form" method="post" enctype="multipart/form-data" charset="UTF-8">',
-            FormBuilder::openMultipart(null, [
+            $this->form->openMultipart(null, [
                 'id' => 'form',
                 'class' => 'test',
             ])
@@ -78,11 +75,11 @@ trait OpenMultipartTestTrait
 
     public function testOpenMultipartCharset(): void
     {
-        HtmlHelper::setCharset('ISO-8859-1');
+        $this->html->setCharset('ISO-8859-1');
 
         $this->assertSame(
             '<form method="post" enctype="multipart/form-data" charset="ISO-8859-1">',
-            FormBuilder::openMultipart()
+            $this->form->openMultipart()
         );
     }
 }

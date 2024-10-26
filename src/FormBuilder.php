@@ -14,7 +14,7 @@ use function is_array;
 /**
  * FormBuilder
  */
-abstract class FormBuilder
+class FormBuilder
 {
     protected const INPUT_TYPES = [
         'checkbox',
@@ -40,6 +40,44 @@ abstract class FormBuilder
         'week',
     ];
 
+    protected HtmlHelper $html;
+
+    /**
+     * New FormBuilder constructor.
+     *
+     * @param HtmlHelper $html The HtmlHelper.
+     */
+    public function __construct(HtmlHelper $html)
+    {
+        $this->html = $html;
+    }
+
+    /**
+     * Render an input type element.
+     *
+     * @param string $type The input type.
+     * @param array $arguments Arguments to pass to the input method.
+     * @return string The input HTML.
+     *
+     * @throws BadMethodCallException if the input type is not valid.
+     */
+    public function __call(string $type, array $arguments): string
+    {
+        if ($type === 'datetime') {
+            $type = 'datetime-local';
+        }
+
+        if (!in_array($type, static::INPUT_TYPES)) {
+            throw new BadMethodCallException('Invalid input type');
+        }
+
+        $name = array_shift($arguments);
+        $options = array_shift($arguments) ?? [];
+        $options['type'] = $type;
+
+        return $this->input($name, $options);
+    }
+
     /**
      * Render a button element.
      *
@@ -47,7 +85,7 @@ abstract class FormBuilder
      * @param array $options Options for rendering the button.
      * @return string The button HTML.
      */
-    public static function button(string $content = '', array $options = []): string
+    public function button(string $content = '', array $options = []): string
     {
         $escape = $options['escape'] ?? true;
         unset($options['escape']);
@@ -55,10 +93,10 @@ abstract class FormBuilder
         $options['type'] ??= 'button';
 
         if ($escape) {
-            $content = HtmlHelper::escape($content);
+            $content = $this->html->escape($content);
         }
 
-        return '<button'.HtmlHelper::attributes($options).'>'.$content.'</button>';
+        return '<button'.$this->html->attributes($options).'>'.$content.'</button>';
     }
 
     /**
@@ -66,7 +104,7 @@ abstract class FormBuilder
      *
      * @return string The form close HTML.
      */
-    public static function close(): string
+    public function close(): string
     {
         return '</form>';
     }
@@ -76,7 +114,7 @@ abstract class FormBuilder
      *
      * @return string The fieldset close HTML.
      */
-    public static function fieldsetClose(): string
+    public function fieldsetClose(): string
     {
         return '</fieldset>';
     }
@@ -87,9 +125,9 @@ abstract class FormBuilder
      * @param array $options Options for rendering the fieldset.
      * @return string The fieldset open HTML.
      */
-    public static function fieldsetOpen(array $options = []): string
+    public function fieldsetOpen(array $options = []): string
     {
-        return '<fieldset'.HtmlHelper::attributes($options).'>';
+        return '<fieldset'.$this->html->attributes($options).'>';
     }
 
     /**
@@ -99,7 +137,7 @@ abstract class FormBuilder
      * @param array $options Options for rendering the input.
      * @return string The input HTML.
      */
-    public static function input(string|null $name = null, array $options = []): string
+    public function input(string|null $name = null, array $options = []): string
     {
         if ($name !== null) {
             $options['name'] ??= $name;
@@ -107,7 +145,7 @@ abstract class FormBuilder
 
         $options['type'] ??= 'text';
 
-        return '<input'.HtmlHelper::attributes($options).' />';
+        return '<input'.$this->html->attributes($options).' />';
     }
 
     /**
@@ -117,16 +155,16 @@ abstract class FormBuilder
      * @param array $options Options for rendering the label.
      * @return string The label HTML.
      */
-    public static function label(string $content = '', array $options = []): string
+    public function label(string $content = '', array $options = []): string
     {
         $escape = $options['escape'] ?? true;
         unset($options['escape']);
 
         if ($escape) {
-            $content = HtmlHelper::escape($content);
+            $content = $this->html->escape($content);
         }
 
-        return '<label'.HtmlHelper::attributes($options).'>'.$content.'</label>';
+        return '<label'.$this->html->attributes($options).'>'.$content.'</label>';
     }
 
     /**
@@ -136,16 +174,16 @@ abstract class FormBuilder
      * @param array $options Options for rendering the legend.
      * @return string The legend HTML.
      */
-    public static function legend(string $content = '', array $options = []): string
+    public function legend(string $content = '', array $options = []): string
     {
         $escape = $options['escape'] ?? true;
         unset($options['escape']);
 
         if ($escape) {
-            $content = HtmlHelper::escape($content);
+            $content = $this->html->escape($content);
         }
 
-        return '<legend'.HtmlHelper::attributes($options).'>'.$content.'</legend>';
+        return '<legend'.$this->html->attributes($options).'>'.$content.'</legend>';
     }
 
     /**
@@ -155,16 +193,16 @@ abstract class FormBuilder
      * @param array $options Options for rendering the form.
      * @return string The form open HTML.
      */
-    public static function open(string|null $action = null, array $options = []): string
+    public function open(string|null $action = null, array $options = []): string
     {
         if ($action !== null) {
             $options['action'] ??= $action;
         }
 
         $options['method'] ??= 'post';
-        $options['charset'] ??= HtmlHelper::getCharset();
+        $options['charset'] ??= $this->html->getCharset();
 
-        return '<form'.HtmlHelper::attributes($options).'>';
+        return '<form'.$this->html->attributes($options).'>';
     }
 
     /**
@@ -174,11 +212,11 @@ abstract class FormBuilder
      * @param array $options Options for rendering the form.
      * @return string The form open HTML.
      */
-    public static function openMultipart(string|null $action = null, array $options = []): string
+    public function openMultipart(string|null $action = null, array $options = []): string
     {
         $options['enctype'] = 'multipart/form-data';
 
-        return static::open($action, $options);
+        return $this->open($action, $options);
     }
 
     /**
@@ -188,7 +226,7 @@ abstract class FormBuilder
      * @param array $options Options for rendering the select.
      * @return string The select HTML.
      */
-    public static function select(string|null $name = null, array $options = []): string
+    public function select(string|null $name = null, array $options = []): string
     {
         if ($name !== null) {
             $options['name'] ??= $name;
@@ -204,8 +242,8 @@ abstract class FormBuilder
             $selected = [$selected];
         }
 
-        $html = '<select'.HtmlHelper::attributes($options).'>';
-        $html .= static::buildOptions($selectOptions, $selected);
+        $html = '<select'.$this->html->attributes($options).'>';
+        $html .= $this->buildOptions($selectOptions, $selected);
         $html .= '</select>';
 
         return $html;
@@ -218,11 +256,11 @@ abstract class FormBuilder
      * @param array $options Options for rendering the select.
      * @return string The select HTML.
      */
-    public static function selectMulti(string|null $name = null, array $options = []): string
+    public function selectMulti(string|null $name = null, array $options = []): string
     {
         $options[] = 'multiple';
 
-        return static::select($name, $options);
+        return $this->select($name, $options);
     }
 
     /**
@@ -232,7 +270,7 @@ abstract class FormBuilder
      * @param array $options Options for rendering the textarea.
      * @return string The textarea HTML.
      */
-    public static function textarea(string|null $name = null, array $options = []): string
+    public function textarea(string|null $name = null, array $options = []): string
     {
         if ($name !== null) {
             $options['name'] ??= $name;
@@ -241,33 +279,7 @@ abstract class FormBuilder
         $value = $options['value'] ?? '';
         unset($options['value']);
 
-        return '<textarea'.HtmlHelper::attributes($options).'>'.HtmlHelper::escape($value).'</textarea>';
-    }
-
-    /**
-     * Render an input type element.
-     *
-     * @param string $type The input type.
-     * @param array $arguments Arguments to pass to the input method.
-     * @return string The input HTML.
-     *
-     * @throws BadMethodCallException if the input type is not valid.
-     */
-    public static function __callStatic(string $type, array $arguments): string
-    {
-        if ($type === 'datetime') {
-            $type = 'datetime-local';
-        }
-
-        if (!in_array($type, static::INPUT_TYPES)) {
-            throw new BadMethodCallException('Invalid input type');
-        }
-
-        $name = array_shift($arguments);
-        $options = array_shift($arguments) ?? [];
-        $options['type'] = $type;
-
-        return static::input($name, $options);
+        return '<textarea'.$this->html->attributes($options).'>'.$this->html->escape($value).'</textarea>';
     }
 
     /**
@@ -277,7 +289,7 @@ abstract class FormBuilder
      * @param array $selected The selected values.
      * @return string The options HTML.
      */
-    protected static function buildOptions(array $options, array $selected): string
+    protected function buildOptions(array $options, array $selected): string
     {
         $html = '';
 
@@ -292,8 +304,8 @@ abstract class FormBuilder
                 $children = $option['children'];
                 unset($option['children']);
 
-                $html .= '<optgroup'.HtmlHelper::attributes($option).'>';
-                $html .= static::buildOptions($children, $selected);
+                $html .= '<optgroup'.$this->html->attributes($option).'>';
+                $html .= $this->buildOptions($children, $selected);
                 $html .= '</optgroup>';
             } else {
                 $option['value'] ??= $value;
@@ -304,7 +316,7 @@ abstract class FormBuilder
                     $option[] = 'selected';
                 }
 
-                $html .= '<option'.HtmlHelper::attributes($option).'>'.HtmlHelper::escape($label).'</option>';
+                $html .= '<option'.$this->html->attributes($option).'>'.$this->html->escape($label).'</option>';
             }
         }
 

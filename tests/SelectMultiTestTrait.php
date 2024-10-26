@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait SelectMultiTestTrait
 {
     public function testSelectMulti(): void
     {
         $this->assertSame(
             '<select multiple></select>',
-            FormBuilder::selectMulti()
+            $this->form->selectMulti()
         );
     }
 
@@ -19,7 +17,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select data-test="[1,2]" multiple></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select data-test="&lt;test&gt;" multiple></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select class="test" multiple></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select class="test" id="select" multiple></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'class' => 'test',
                 'id' => 'select',
             ])
@@ -60,7 +58,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select class="test" id="select" multiple></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'id' => 'select',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select name="select" multiple></select>',
-            FormBuilder::selectMulti('select')
+            $this->form->selectMulti('select')
         );
     }
 
@@ -79,7 +77,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><optgroup label="test"><option value="0">A</option><option value="1">B</option></optgroup></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     [
                         'label' => 'test',
@@ -97,7 +95,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="0">A</option><option value="1">B</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     'A',
                     'B',
@@ -110,7 +108,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="a">A</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     'a' => 'A',
                 ],
@@ -122,7 +120,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="a">A</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -137,7 +135,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option data-test="&lt;test&gt;" value="a">A</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -153,7 +151,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option class="test" value="a">A</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     [
                         'value' => 'a',
@@ -169,7 +167,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="0">&lt;test&gt;</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     '<test>',
                 ],
@@ -181,7 +179,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="0">A</option><option value="1" selected>B</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     'A',
                     'B',
@@ -195,7 +193,7 @@ trait SelectMultiTestTrait
     {
         $this->assertSame(
             '<select multiple><option value="0">A</option><option value="1" selected>B</option><option value="2" selected>C</option></select>',
-            FormBuilder::selectMulti(null, [
+            $this->form->selectMulti(null, [
                 'options' => [
                     'A',
                     'B',

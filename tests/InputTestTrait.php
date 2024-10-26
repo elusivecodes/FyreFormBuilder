@@ -3,15 +3,13 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Fyre\Form\FormBuilder;
-
 trait InputTestTrait
 {
     public function testInput(): void
     {
         $this->assertSame(
             '<input type="text" />',
-            FormBuilder::input()
+            $this->form->input()
         );
     }
 
@@ -19,7 +17,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input data-test="[1,2]" type="text" />',
-            FormBuilder::input(null, [
+            $this->form->input(null, [
                 'data-test' => [1, 2],
             ])
         );
@@ -29,7 +27,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input data-test="&lt;test&gt;" type="text" />',
-            FormBuilder::input(null, [
+            $this->form->input(null, [
                 'data-test' => '<test>',
             ])
         );
@@ -39,7 +37,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input class="test" type="text" />',
-            FormBuilder::input(null, [
+            $this->form->input(null, [
                 '*class*' => 'test',
             ])
         );
@@ -49,7 +47,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input class="test" id="input" type="text" />',
-            FormBuilder::input(null, [
+            $this->form->input(null, [
                 'class' => 'test',
                 'id' => 'input',
             ])
@@ -60,7 +58,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input class="test" id="input" type="text" />',
-            FormBuilder::input(null, [
+            $this->form->input(null, [
                 'id' => 'input',
                 'class' => 'test',
             ])
@@ -71,7 +69,7 @@ trait InputTestTrait
     {
         $this->assertSame(
             '<input name="input" type="text" />',
-            FormBuilder::input('input')
+            $this->form->input('input')
         );
     }
 }

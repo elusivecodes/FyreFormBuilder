@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Fyre\Form\FormBuilder;
 use Fyre\Utility\HtmlHelper;
 use PHPUnit\Framework\TestCase;
 
@@ -22,8 +23,15 @@ final class FormBuilderTest extends TestCase
     use SelectTestTrait;
     use TextareaTestTrait;
 
+    protected FormBuilder $form;
+
+    protected HtmlHelper $html;
+
     protected function setUp(): void
     {
-        HtmlHelper::setCharset('UTF-8');
+        $this->html = new HtmlHelper();
+        $this->html->setCharset('UTF-8');
+
+        $this->form = new FormBuilder($this->html);
     }
 }
