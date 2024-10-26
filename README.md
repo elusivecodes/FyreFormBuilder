@@ -5,7 +5,7 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [FormBuilder Create](#formbuilder-creation)
+- [FormBuilder Creation](#formbuilder-creation)
 - [FormBuilder Methods](#formbuilder-methods)
 
 
