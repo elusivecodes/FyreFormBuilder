@@ -5,8 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [FormBuilder Creation](#formbuilder-creation)
-- [FormBuilder Methods](#formbuilder-methods)
+- [Basic Usage](#basic-usage)
+- [Methods](#methods)
 
 
 
@@ -25,7 +25,7 @@ use Fyre\Form\FormBuilder;
 ```
 
 
-## FormBuilder Creation
+## Basic Usage
 
 - `$html` is a [*HtmlHelper*](https://github.com/elusivecodes/FyreHTMLHelper).
 
@@ -34,7 +34,7 @@ $form = new FormBuilder($html);
 ```
 
 
-## FormBuilder Methods
+## Methods
 
 **Button**
 
