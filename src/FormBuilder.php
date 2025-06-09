@@ -40,17 +40,14 @@ class FormBuilder
         'week',
     ];
 
-    protected HtmlHelper $html;
-
     /**
      * New FormBuilder constructor.
      *
      * @param HtmlHelper $html The HtmlHelper.
      */
-    public function __construct(HtmlHelper $html)
-    {
-        $this->html = $html;
-    }
+    public function __construct(
+        protected HtmlHelper $html
+    ) {}
 
     /**
      * Render an input type element.
