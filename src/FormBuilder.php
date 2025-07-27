@@ -5,6 +5,7 @@ namespace Fyre\Form;
 
 use BadMethodCallException;
 use Fyre\Utility\HtmlHelper;
+use Fyre\Utility\Traits\MacroTrait;
 
 use function array_key_exists;
 use function array_shift;
@@ -16,6 +17,8 @@ use function is_array;
  */
 class FormBuilder
 {
+    use MacroTrait;
+
     protected const INPUT_TYPES = [
         'checkbox',
         'color',
